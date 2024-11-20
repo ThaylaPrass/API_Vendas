@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Fornecedor {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  cnpj      String   @unique
+  contato   String
+  endereco  String
+  pedidos   PedidoCompra[] 
+}
+
+model Transportador {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  cnpj      String   @unique
+  contato   String
+  endereco  String
+  pedidos   PedidoCompra[]
+}
+
+model Produto {
+  id                Int      @id @default(autoincrement())
+  nome              String
+  descricao        String?
+  valor_unitario    Float
+  quantidade_estoque Int
+  pedidoProdutos    PedidoProduto[]
+}
+
+model Cliente {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  cpf       String   @unique
+  contato   String
+  endereco  String
+  pedido   PedidoCompra[]
+}
+
+model PedidoCompra {
+  id              Int      @id @default(autoincrement())
+  fornecedor      Fornecedor    @relation(fields: [id_fornecedor], references: [id])
+  id_fornecedor   Int
+  transportador   Transportador @relation(fields: [id_transportador], references: [id])
+  id_transportador Int
+  valor_do_pedido Float
+  desconto_total  Float    @default(0)
+  valor_final     Float
+  status          String
+  data_pedido     DateTime @default(now())
+  produtos        PedidoProduto[]
+  Clienteid Int
+  Cliente Cliente @relation(fields: [Clienteid], references: [id])
+
+}
+
+model PedidoProduto {
+  id              Int      @id @default(autoincrement())
+  pedido          PedidoCompra @relation(fields: [id_pedido_compra], references: [id])
+  id_pedido_compra Int
+  produto         Produto     @relation(fields: [id_produto], references: [id])
+  id_produto      Int
+  quantidade      Int
+  valor_unitario  Float
+  valor_total     Float
+}

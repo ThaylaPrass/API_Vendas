@@ -1,0 +1,178 @@
+1. Criar Fornecedor
+
+Rota: POST /fornecedores
+
+{
+  "nome": "Fornecedor XYZ",
+  "cnpj": "12345678000123",
+  "contato": "1122334455",
+  "endereco": "Rua A, 123"
+}
+
+2. Alterar Fornecedor
+
+Rota: PUT /fornecedores/:id
+
+{
+  "nome": "Fornecedor Alterado",
+  "cnpj": "12345678000123",
+  "contato": "9988776655",
+  "endereco": "Rua B, 456"
+}
+
+3. Criar Produto
+
+Rota: POST /produtos
+
+{
+  "nome": "Produto A",
+  "descricao": "Descrição do Produto A",
+  "valor_unitario": 100.0,
+  "quantidade_estoque": 50
+}
+
+4. Alterar Produto
+
+Rota: PUT /produtos/:id
+
+{
+  "nome": "Produto A Alterado",
+  "descricao": "Descrição do Produto A Alterado",
+  "valor_unitario": 120.0,
+  "quantidade_estoque": 40
+}
+
+5. Criar Pedido de Compra
+
+Rota: POST /pedidos
+
+{
+  "id_fornecedor": 1,
+  "id_transportador": 1,
+  "valor_do_pedido": 500.0,
+  "desconto_total": 10.0,
+  "valor_final": 450.0,
+  "status": "Em andamento",
+  "produtos": [
+    {
+      "id_produto": 1,
+      "quantidade": 2,
+      "valor_unitario": 100.0,
+      "valor_total": 200.0
+    }
+  ]
+}
+
+6. Alterar Status do Pedido de Compra
+
+Rota: PUT /pedidos/:id/status
+
+{
+  "status": "Concluído"
+}
+
+7. Criar Cliente
+
+Rota: POST /clientes
+
+{
+  "nome": "Cliente A",
+  "cpf": "12345678901",
+  "contato": "1122334455",
+  "endereco": "Rua C, 789"
+}
+
+8. Alterar Cliente
+
+Rota: PUT /clientes/:id
+
+{
+  "nome": "Cliente A Alterado",
+  "contato": "9988776655",
+  "endereco": "Rua D, 101"
+}
+
+9. Criar Transportador
+
+Rota: POST /transportadores
+
+{
+  "nome": "Transportadora A",
+  "cnpj": "98765432000198",
+  "contato": "2233445566",
+  "endereco": "Avenida E, 101"
+}
+
+10. Alterar Transportador
+
+Rota: PUT /transportadores/:id
+
+{
+  "nome": "Transportadora A Alterada",
+  "cnpj": "98765432000199",
+  "contato": "9988776644",
+  "endereco": "Avenida F, 202"
+}
+
+11. Criar Pedido Produto
+
+Rota: POST /pedido-produtos
+
+{
+  "id_pedido_compra": 1,
+  "id_produto": 1,
+  "quantidade": 5,
+  "valor_unitario": 100.0,
+  "valor_total": 500.0
+}
+
+12. Alterar Pedido Produto
+
+Rota: PUT /pedido-produtos/:id
+
+{
+  "quantidade": 10,
+  "valor_unitario": 120.0,
+  "valor_total": 1200.0
+}
+
+13. Deletar Pedido Produto
+
+Rota: DELETE /pedido-produtos/:id
+
+Não requer corpo.
+14. Consultar Pedido Produto por ID
+
+Rota: GET /pedido-produtos/:id
+
+Não requer corpo.
+15. Listar Fornecedores
+
+Rota: GET /fornecedores
+
+Não requer corpo.
+16. Listar Produtos
+
+Rota: GET /produtos
+
+Não requer corpo.
+17. Listar Pedidos
+
+Rota: GET /pedidos
+
+Não requer corpo.
+18. Listar Clientes
+
+Rota: GET /clientes
+
+Não requer corpo.
+19. Listar Transportadores
+
+Rota: GET /transportadores
+
+Não requer corpo.
+20. Listar Pedido Produtos
+
+Rota: GET /pedido-produtos
+
+Não requer corpo.
